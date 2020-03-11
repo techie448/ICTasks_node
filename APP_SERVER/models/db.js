@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-
 const dbURI = 'mongodb+srv://admin:pass@cluster0-cctit.mongodb.net/test?retryWrites=true&w=majority';
 
-mongoose.connect(dbURI, {dbName: 'foodDB'});
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(dbURI, {dbName: 'foodDB', useNewUrlParser: true});
 
 defineMongoLogs(mongoose);
-
 handleTerminations(mongoose, process);
 
 function defineMongoLogs(mongoose) {
