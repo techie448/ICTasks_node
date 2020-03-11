@@ -3,10 +3,13 @@ const router = express.Router();
 
 const ctrlFood = require('./../controllers/food');
 
-router.get('/foods', ctrlFood.getFoods);
-router.post('/foods', ctrlFood.createFood);
-router.put('/foods/:foodid', ctrlFood.deleteFood);
-router.get('/foods/:foodid', ctrlFood.getSingleFood);
-router.put('/foods/:foodid', ctrlFood.updateFood);
+router.route('/foods')
+    .get(ctrlFood.getFoods)
+    .post(ctrlFood.createFood);
+
+router.route('/foods/:foodId')
+    .delete(ctrlFood.deleteFood)
+    .get(ctrlFood.getSingleFood)
+    .put(ctrlFood.updateFood);
 
 module.exports = router;
