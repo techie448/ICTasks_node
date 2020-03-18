@@ -1,30 +1,32 @@
-let foodArray = [
-    {name: 'Oatmeal', type: 'Breakfast'},
-    {name: 'Pizza', type: 'Lunch'},
-    {name: 'Pasta', type: 'Dinner'}
-];
+const request = require('request');
+const apiOptions = {server: 'http://localhost:3000'};
 
-const myFavFood = foodArray[2];
 
-let foodList = (req, res) => {
+const _renderHomepage = (req, res, responseBody) => res.render('foodlist', {foods: responseBody});
 
-    res.render('foodlist', {
-        title: 'Food list',
-        foods: foodArray
-    });
-
+const homeList = (req, res) => {
+    const path = '/api/foods';
+    const requestOptions = {
+        url: apiOptions.server + path,
+        method: 'GET',
+        json: {}
+    };
+    request(requestOptions, (err, response, body) => _renderHomepage(req, res, body));
 };
 
-let favouriteFood = (req, res) => {
+const _renderDetailPage = (req, res, responseBody) => res.render('food-info', {currentFood: responseBody});
 
-    res.render('favourite-food', {
-        title: 'My favourite food',
-        favfood: myFavFood
-    });
-
+const foodInfo = (req, res) => {
+    const path = `/api/foods/${req.params.foodId}`;
+    const requestOptions = {
+        url: apiOptions.server + path,
+        method: 'GET',
+        json: {}
+    };
+    request(requestOptions, (err, response, body) => _renderDetailPage(req, res, body));
 };
 
 module.exports = {
-    foodList,
-    favouriteFood
+    homeList,
+    foodInfo
 };

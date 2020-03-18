@@ -1,8 +1,8 @@
 extends layout
 
 block content
-    h1= title
-    p Here is a list of my favourite foods
+    p Here is a list of all foods
     ul
     each food in foods
-        li #{food.name} : #{food.type}
+        li
+            a(href=`/foods/${food._id}`) #{food.name}
