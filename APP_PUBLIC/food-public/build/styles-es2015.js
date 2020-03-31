@@ -338,7 +338,7 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/rishabhkharbanda/Downloads/practice/hf3/Rishabh_Kharbanda-ICTask10/APP_PUBLIC/food-public/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/rishabhkharbanda/Downloads/practice/hf3/Rishabh_Kharbanda-ICTask11/APP_PUBLIC/food-public/src/styles.css */"./src/styles.css");
 
 
 /***/ })
