@@ -6,12 +6,19 @@ var logger = require("morgan");
 
 let db = require("./APP_SERVER/models/db");
 
-var indexRouter = require("./APP_SERVER/routes/index");
+// var indexRouter = require("./APP_SERVER/routes/index");
 var usersRouter = require("./APP_SERVER/routes/users");
 const apiRouter = require("./APP_API/routes/foods");
 
 var app = express();
 app.use(express.static(path.join(__dirname, "APP_PUBLIC/food-public/build")));
+app.use(express.static(path.join(__dirname, "APP_PUBLIC","build")));
+
+app.all('/*', function(req,res,next){
+  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Header","*");
+  next();
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "APP_SERVER", "views"));
@@ -21,8 +28,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/", indexRouter);
+// app.use(express.static(path.join(__dirname, "public")));
+// app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/api", apiRouter);
 
