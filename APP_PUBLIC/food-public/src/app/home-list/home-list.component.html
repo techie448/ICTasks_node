@@ -1,0 +1,9 @@
+<p>Food List!</p>
+<div>
+  <span *ngFor="let food of foods" class="badge">
+    <ul>
+      <li>Name : {{ food.name }}</li>
+      <li>Type : {{ food.type }}</li>
+    </ul>
+  </span>
+</div>
